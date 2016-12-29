@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="be3bcace-2112-487c-b85f-6627961741cb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="v1.xsd" MetadataType="Schema" ID="85cac1d4-cb00-4166-95ba-a61410a3e601" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd2.xsd" />
+    <MetadataFile FileName="v11.xsd" MetadataType="Schema" ID="56f0c204-0589-4282-b483-67d9f9e602ec" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd7.xsd" />
+    <MetadataFile FileName="v12.xsd" MetadataType="Schema" ID="4af4eb43-f5da-423f-b59a-cb01c7a9daeb" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd8.xsd" />
+    <MetadataFile FileName="v13.xsd" MetadataType="Schema" ID="c0e13341-ac7e-4a07-9727-00cc92db20d4" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd6.xsd" />
+    <MetadataFile FileName="v1.wsdl" MetadataType="Wsdl" ID="53aee4ac-7fd8-4de8-82ff-b5ba069c2fba" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1?wsdl" />
+    <MetadataFile FileName="v14.xsd" MetadataType="Schema" ID="1debef01-cd3e-4d06-8612-79b4afc6ef12" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd5.xsd" />
+    <MetadataFile FileName="v15.xsd" MetadataType="Schema" ID="4f791674-278f-4526-bfc1-0be4ae83795e" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd3.xsd" />
+    <MetadataFile FileName="v16.xsd" MetadataType="Schema" ID="99932935-9cc0-43a0-9c77-d63bd536096a" SourceId="1" SourceUrl="https://webservicesgatewaytest.sprint.com:444/services/mvno/WholesaleSubscriptionDetailService/v1.xsd4.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

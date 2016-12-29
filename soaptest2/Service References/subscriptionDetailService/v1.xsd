@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://integration.sprint.com/common/ErrorDetails.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://integration.sprint.com/common/ErrorDetails.xsd" version="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ProviderErrorType">
+    <xs:annotation>
+      <xs:documentation>Structure to hold EAI or back-office detail error information. It is not intended for programmatic decisions unless specific API documentation allows, but to facilitate troubleshooting by logging verbose error conditions.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="providerErrorCode" type="tns:ProviderErrorCodeType">
+        <xs:annotation>
+          <xs:documentation>Numeric encoding of the error.  Intended to be consumed programatically.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="providerErrorText" type="tns:ProviderErrorTextType">
+        <xs:annotation>
+          <xs:documentation>Human-readable description of the error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorDetailsListType">
+    <xs:sequence>
+      <xs:element maxOccurs="1000" name="errorDetailItem" type="tns:ErrorDetailsType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="errorDetailItem" type="tns:ErrorDetailsType" />
+  <xs:complexType name="ErrorDetailsType">
+    <xs:annotation>
+      <xs:documentation>Defines the customization of the SOAP 1.1 Fault details element.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="providerError" type="tns:ProviderErrorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ProviderErrorCodeType">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="ProviderErrorTextType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="errorDetailList" type="tns:ErrorDetailsListType" />
+</xs:schema>

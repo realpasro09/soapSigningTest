@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://integration.sprint.com/interfaces/wholesaleQueryPpSocList/v3/wholesaleQueryPpSocListV3.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://integration.sprint.com/interfaces/wholesaleQueryPpSocList/v3/wholesaleQueryPpSocListV3.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="wholesaleQueryPpSocListV3" type="tns:WholesaleQueryPpSocListV3Type" />
+  <xs:element name="wholesaleQueryPpSocListV3Response" type="tns:WholesaleQueryPpSocListV3ResponseType" />
+  <xs:complexType name="WholesaleQueryPpSocListV3Type">
+    <xs:annotation>
+      <xs:documentation>This API retrieves a list of available services for a given Reseller based on the leaf level CSA provided.  This includes services inherited from the CSA hierarchy.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="csa" type="tns:CommunicationServiceAreaIdentifierType">
+        <xs:annotation>
+          <xs:documentation>Communication Service Area Identifier of the Reseller</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WholesaleQueryPpSocListV3ResponseType">
+    <xs:annotation>
+      <xs:documentation>This API retrieves a list of available services for a given Reseller based on the leaf level CSA provided.  This includes services inherited from the CSA hierarchy.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="socProfileList" type="tns:SocProfileListType">
+        <xs:annotation>
+          <xs:documentation>Contains 1 to 600 soc profile records. </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DataLinkInfoType">
+    <xs:sequence>
+      <xs:element name="userNameType" type="tns:SystemGeneratedTypeCodeType">
+        <xs:annotation>
+          <xs:documentation>used to determine if the Datalink NAI username is system generated or user defined.
+S - Data Link Username is SYstem-generated
+U - Data Link Username is USer-defined</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="passwordType" type="tns:SystemGeneratedTypeCodeType">
+        <xs:annotation>
+          <xs:documentation>used to determine if the Datalink NAI password is system generated or user defined.
+S - Data Link Username is SYstem-generated
+U - Data Link Username is USer-defined</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SocProfileListType">
+    <xs:sequence>
+      <xs:element maxOccurs="600" name="socProfileRecord" type="tns:SocProfileRecordType">
+        <xs:annotation>
+          <xs:documentation>soc profile detail record</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SocProfileRecordType">
+    <xs:sequence>
+      <xs:element name="soc" type="tns:ServiceOrderCodeType">
+        <xs:annotation>
+          <xs:documentation>Service name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="effectiveDate" type="tns:ServiceOrderEffectiveFromDateType">
+        <xs:annotation>
+          <xs:documentation>Defines the date on which the Price Plan or SOC was entered into the wholesale billing system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="socStatus" type="tns:ServiceOrderStatusCodeType">
+        <xs:annotation>
+          <xs:documentation>Service order code (SOC) status A = active</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="saleEffectiveDate" type="tns:SaleEffectiveFromDateType">
+        <xs:annotation>
+          <xs:documentation>Defines the date from which the SOC/Price Plan is available for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="saleExpireDate" type="tns:ExpirationDateType">
+        <xs:annotation>
+          <xs:documentation>Defines the date from which the SOC/Price Plan is no longer available for sale.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="socDescription" type="tns:ServiceOrderDescriptionType">
+        <xs:annotation>
+          <xs:documentation>Describes the SOC.  It is a brief, free text description of the SOC characteristics.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="expirationDate" type="tns:ServiceOrderExpirationDateType">
+        <xs:annotation>
+          <xs:documentation>Defines the expiration date of the price plan or the SOC.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="serviceType" type="tns:ServiceOrderCodeTypeCodeType">
+        <xs:annotation>
+          <xs:documentation>For Amdocs, we will get the following values:
+P = Price Plan
+R = Regular Soc</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="dataLinkInfo" type="tns:DataLinkInfoType">
+        <xs:annotation>
+          <xs:documentation>Structure containing Datalink username attributes and password attributes.  These attributes are used to identify if the username and password are user defined or system defined.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="staticIpInd" type="tns:BinaryExpressionType">
+        <xs:annotation>
+          <xs:documentation>Indicates if a  retrieved SOC is static IP SOC.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="BinaryExpressionType">
+    <xs:annotation>
+      <xs:documentation>Binary Expression is a type of an expression with two possible states,"true"and"false".</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:boolean" />
+  </xs:simpleType>
+  <xs:simpleType name="CommunicationServiceAreaIdentifierType">
+    <xs:annotation>
+      <xs:documentation>Communication Service Area Identifier uniquely identifies an instance of a geographic area (CSA) served by a communication service provider, which can be broken down into regional, metropolitan, district and smaller sections called ''leaves.''</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExpirationDateType">
+    <xs:annotation>
+      <xs:documentation>The time of day on the Effective date that something goes into effect or becomes active.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date" />
+  </xs:simpleType>
+  <xs:simpleType name="SaleEffectiveFromDateType">
+    <xs:annotation>
+      <xs:documentation>Sale Effective From date is the date that the from which the SOC/price plan is available for sale.
+</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date" />
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderExpirationDateType">
+    <xs:annotation>
+      <xs:documentation>The date which the SOC expires or becomes inactive.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date" />
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderCodeType">
+    <xs:annotation>
+      <xs:documentation>Service Order Code - Ensemble</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderCodeTypeCodeType">
+    <xs:annotation>
+      <xs:documentation>Service Order Code Type Code identifies the various types of Service Order Codes.  Valid values include (not exclusive list):
+B - Buy One Get One SOC
+I - 
+P - Price Plan
+M - Reduced Price Plan
+S - Reduced SOC
+R - Regular SOC
+O - Optional SOC</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderDescriptionType">
+    <xs:annotation>
+      <xs:documentation>Service Order Description.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderEffectiveFromDateType">
+    <xs:annotation>
+      <xs:documentation>Service Order Effective Date holds the calendar day when a service order becomes active.
+
+Elements declared to be of type date must follow this form:  
+CCYY-MM-DD
+range for CC is: 00-99
+range for YY is: 00-99
+range for MM is: 01-12
+range for DD is: 
+01-28 if month is 2
+01-29 if month is 2 and the gYear is a leap gYear
+01-30 if month is 4, 6, 9, or 11
+01-31 if month is 1, 3, 5, 7, 8, 10, or 12
+
+Example: 1999-05-31 represents May 31, 1999</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:date" />
+  </xs:simpleType>
+  <xs:simpleType name="ServiceOrderStatusCodeType">
+    <xs:annotation>
+      <xs:documentation>Service Order Status code designates the status of a particular service order for a customer.
+Example:
+A - active</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SystemGeneratedTypeCodeType">
+    <xs:annotation>
+      <xs:documentation>System Generated Type Code Type designates how the associated item is generated by the system or if the associated item is generated outsideof the system.
+Valid Values Include:
+S – System Generated
+U – User Provided...</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

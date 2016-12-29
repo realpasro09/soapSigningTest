@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotNetLicense</name>
+    </assembly>
+    <members>
+        <member name="T:DotNetLicense.License">
+            <summary>
+            Represents an instance of a License. You use the <see cref="T:DotNetLicense.LicenseManager"/> to create and read these licenses. 
+            </summary>
+        </member>
+        <member name="M:DotNetLicense.License.#ctor">
+            <summary>
+            Creates a new license. Use this when creating a license from scratch. 
+            </summary>
+        </member>
+        <member name="M:DotNetLicense.License.#ctor(System.Xml.XmlDocument)">
+            <summary>
+            Creates a license class from an existing XmlDocument representing a signed xml license. It must have been created using this class. 
+            </summary>
+            <param name="licenseContent"></param>
+        </member>
+        <member name="M:DotNetLicense.License.#ctor(System.String)">
+            <summary>
+            Creates a license class from an existing string representing a signed xml license. 
+            </summary>
+            <param name="licenseContent"></param>
+        </member>
+        <member name="M:DotNetLicense.License.AddOrChangeAttribute(System.String,System.String)">
+            <summary>
+            Adds or updates a license attribute. 
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:DotNetLicense.License.GetAttribute(System.String)">
+            <summary>
+            Gets a license attribute from the license. 
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.License.RemoveAttribute(System.String)">
+            <summary>
+            Removes an attribute from the license. 
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:DotNetLicense.License.Sign(System.String)">
+            <summary>
+            Signs the license and generates XML from the attributes and private key. Once signed, the license may not be altered.
+            </summary>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.License.ToXml">
+            <summary>
+            Returns an XmlDocument object representing the license. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.License.FromXml(System.Xml.XmlDocument)">
+            <summary>
+            Initializes a license from an XmlDocument object. 
+            </summary>
+            <param name="xmlDoc"></param>
+        </member>
+        <member name="M:DotNetLicense.License.ToString">
+            <summary>
+            Returns the string representation of the XML license. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.License.IsValid(System.String)">
+            <summary>
+            Checks a license to ensure that it has not been validated.
+            </summary>
+            <param name="publicKey">The public key that was used to generate this license. This is NOT the private key that is used at generation time.</param>
+            <returns>True or false. False means the file has been modified.</returns>
+        </member>
+        <member name="M:DotNetLicense.License.InitializeFromXmlFile(System.Xml.XmlDocument)">
+            <summary>
+            Initializes the license from an XML file. 
+            </summary>
+            <param name="licenseContent"></param>
+        </member>
+        <member name="T:DotNetLicense.LicenseManager">
+            <summary>
+            The license manager class is used to create and load keys for the creation and loading instances of <see cref="T:DotNetLicense.License"/>.
+            </summary>
+        </member>
+        <member name="P:DotNetLicense.LicenseManager.PublicKey">
+            <summary>
+            The public key that is used to verify that a license is valid. You must populate this to open / load licenses. 
+            </summary>
+        </member>
+        <member name="P:DotNetLicense.LicenseManager.PrivateKey">
+            <summary>
+            Private key that is used to create signed licenses. You must popualte this in order to create a new license. 
+            </summary>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadPrivateKeyFromFile(System.String)">
+            <summary>
+            Loads a private key from the given filepath
+            </summary>
+            <param name="filepath"></param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadPublicKeyFromFile(System.String)">
+            <summary>
+            Loads a public key from the given filepath. 
+            </summary>
+            <param name="filepath"></param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadPrivateKeyFromString(System.String)">
+            <summary>
+            Loads a private key from a string. 
+            </summary>
+            <param name="keyString">An XML representation of an RSA key string.</param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadPublicKeyFromString(System.String)">
+            <summary>
+            Loads a public key from a string. 
+            </summary>
+            <param name="keyString">An XML representation of an RSA key string.</param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.CreateKeyPairs(System.String,System.String)">
+            <summary>
+            Creates a new set of private and public key pairs and saves the files to thr specified directory. 
+            </summary>
+            <param name="directory">The directory the keys will be written to. </param>
+            <param name="keyPairName">The name of the keys, which will have _public or private appended to it.</param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.SignAndSaveNewLicense(DotNetLicense.License,System.String)">
+            <summary>
+            Uses the defined Public Key and saves the license to the given filepath.
+            </summary>
+            <param name="license">An instance of a <see cref="T:DotNetLicense.License"/> to be saved to disk.</param>
+            <param name="filepath">The file path where the license will be saved.</param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.SignAndSaveNewLicense(DotNetLicense.License)">
+            <summary>
+            Generates a license as an XML string. 
+            </summary>
+            <param name="license"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadLicenseFromDisk(System.String)">
+            <summary>
+            Loads a license from disk. Throws an exception if it is not valid. 
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadLicenseFromString(System.String)">
+            <summary>
+            Load a license from the given string.
+            </summary>
+            <param name="licenseString">The string from which a license class is to be deserialized and instanciated into.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.StringToFile(System.String,System.String)">
+            <summary>
+            Writes a string to a file. 
+            </summary>
+            <param name="outfile"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:DotNetLicense.LicenseManager.LoadFromDiskAndVerify(System.String)">
+            <summary>
+            Loads a file that is expected to be an XML RSA key. 
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DotNetLicense.LicenseVerificationException">
+            <summary>
+            Exception thrown when a DotNetLicense license file is not valid. 
+            </summary>
+        </member>
+        <member name="P:DotNetLicense.LicenseVerificationException.Message">
+            <summary>
+            A description of why the LicenseVerificationException was thrown. 
+            </summary>
+        </member>
+        <member name="M:DotNetLicense.LicenseVerificationException.#ctor(System.String)">
+            <summary>
+            Creates a new license verification exception with a given message. 
+            </summary>
+            <param name="message">A message describing the reason for the License exception.</param>
+        </member>
+        <member name="M:DotNetLicense.LicenseVerificationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates a license exception with an inner exception and a message. 
+            </summary>
+            <param name="message">A message describing the reason for the exception.</param>
+            <param name="innerException">The inner exception that caused the license exception.</param>
+        </member>
+    </members>
+</doc>

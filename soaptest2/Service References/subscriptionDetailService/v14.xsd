@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://integration.sprint.com/interfaces/wholesaleQueryCsaStaticIpNgpInfo/v1/wholesaleQueryCsaStaticIpNgpInfoV1.xsd" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://integration.sprint.com/interfaces/wholesaleQueryCsaStaticIpNgpInfo/v1/wholesaleQueryCsaStaticIpNgpInfoV1.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="wholesaleQueryCsaStaticIpNgpInfoV1" type="tns:WholesaleQueryCsaStaticIpNgpInfoV1Type" />
+  <xs:element name="wholesaleQueryCsaStaticIpNgpInfoV1Response" type="tns:WholesaleQueryCsaStaticIpNgpInfoV1ResponseType" />
+  <xs:complexType name="WholesaleQueryCsaStaticIpNgpInfoV1Type">
+    <xs:sequence>
+      <xs:element name="csa" type="tns:CommunicationServiceAreaIdentifierType">
+        <xs:annotation>
+          <xs:documentation>Specifies the CSA for which the static IPs NGPs will be requested</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WholesaleQueryCsaStaticIpNgpInfoV1ResponseType">
+    <xs:sequence>
+      <xs:element name="csaIpNgpList" type="tns:CsaIpNgpListType">
+        <xs:annotation>
+          <xs:documentation>List of CSA IP Number group structures.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CsaIpNgpInfoType">
+    <xs:sequence>
+      <xs:element name="ipNgp">
+        <xs:annotation>
+          <xs:documentation>Name of NGP</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="tns:NumberGroupType">
+            <xs:maxLength value="10" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ipNgpDescription" type="tns:NumberGroupDescriptionType">
+        <xs:annotation>
+          <xs:documentation>Description of NGP location</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CsaIpNgpListType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="csaIpNgpInfo" type="tns:CsaIpNgpInfoType">
+        <xs:annotation>
+          <xs:documentation>Structure for NGP/NGP location response.
+
+The ipNgp for the specified CSA will be defaulted to populate the first record in the list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CommunicationServiceAreaIdentifierType">
+    <xs:annotation>
+      <xs:documentation>Communication Service Area Identifier uniquely identifies an instance of a geographic area (CSA) served by a communication service provider, which can be broken down into regional, metropolitan, district and smaller sections called ''leaves.''</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumberGroupType">
+    <xs:annotation>
+      <xs:documentation>Number Group (NGP) is identified as CSA by the Ensemble billing system and groups ranges for a number of resources such as IPs, IMSIs, NPANXXs, and UFs . This grouping represents a geographical zone that includes specific ranges.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumberGroupDescriptionType">
+    <xs:annotation>
+      <xs:documentation>Number Group Description is a description of a specific number group (NGP).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
